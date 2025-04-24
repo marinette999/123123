@@ -6,70 +6,81 @@
     <title>Оценка аккаунта Brawl Stars</title>
     <style>
         body {
-          font-family: Arial, sans-serif;
-          background-color: #f0f0f0;
-          padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
         }
         .container {
-          max-width: 500px;
-          margin: auto;
-          background-color: white;
-          padding: 20px;
-          border-radius: 12px;
-          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        input {
-          width: 100%;
-          padding: 10px;
-          margin-top: 10px;
-          margin-bottom: 20px;
-          border-radius: 8px;
-          border: 1px solid #ccc;
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
         }
-        button {
-          padding: 10px 20px;
-          background-color: #007bff;
-          color: white;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-        }
-        button:hover {
-          background-color: #0056b3;
-        }
-        #result {
-          margin-top: 20px;
-          font-weight: bold;
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
+
 <div class="container">
-    <h1>Оцени свой аккаунт Brawl Stars</h1>
-    <label>Количество бойцов:</label>
-    <input type="number" id="brawlers" placeholder="например, 60">
+    <h1>Оценка аккаунта в Brawl Stars</h1>
+    <p>Введите свой тэг аккаунта для оценки.</p>
+    <input type="text" id="tagInput" placeholder="Введите ваш тэг">
+    <button onclick="getAccountValue()">Получить оценку</button>
 
-    <label>Общее количество кубков:</label>
-    <input type="number" id="trophies" placeholder="например, 15000">
-
-    <label>Количество скинов:</label>
-    <input type="number" id="skins" placeholder="например, 20">
-
-    <button onclick="calculateValue()">Оценить</button>
-
-    <div id="result"></div>
+    <div class="result" id="result"></div>
 </div>
 
 <script>
-    function calculateValue() {
-      const brawlers = parseInt(document.getElementById('brawlers').value) || 0;
-      const trophies = parseInt(document.getElementById('trophies').value) || 0;
-      const skins = parseInt(document.getElementById('skins').value) || 0;
+    function getAccountValue() {
+        var tag = document.getElementById('tagInput').value;
 
-      const value = (brawlers * 100) + (trophies * 0.5) + (skins * 150);
+        if(tag === "") {
+            alert("Пожалуйста, введите тэг.");
+            return;
+        }
 
-      document.getElementById('result').innerText = `Примерная ценность аккаунта: ${value.toFixed(2)} монет.`;
+        // Здесь должно быть взаимодействие с API или сервером для получения информации
+        // Пример, как это может выглядеть:
+        // fetch('API_URL/endpoint?tag=' + tag)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         // Вставить данные в блок результата
+        //         document.getElementById('result').innerHTML = `
+        //             Монеты: ${data.coins} <br>
+        //             Очки силы: ${data.powerPoints} <br>
+        //             Гемы: ${data.gems}
+        //         `;
+        //     });
+
+        // Пока что будет пример с фиктивными данными:
+        var fakeData = {
+            coins: 12345,
+            powerPoints: 67890,
+            gems: 150
+        };
+
+        document.getElementById('result').innerHTML = `
+            Монеты: ${fakeData.coins} <br>
+            Очки силы: ${fakeData.powerPoints} <br>
+            Гемы: ${fakeData.gems}
+        `;
     }
 </script>
+
 </body>
 </html>
